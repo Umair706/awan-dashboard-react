@@ -18,6 +18,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { styled } from '@mui/system';
 import { Title, Text } from '../';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const CustomListItemButton = styled(ListItemButton)(
   ({ theme, isMinimized }) => {
@@ -96,10 +97,11 @@ const menuItems = [
 
 const Sidebar = () => {
   const [open, setOpen] = useState({});
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useLocalStorage('isMinimized', false);
   const currentTheme = useTheme();
   const handleClick = (index) => {
     setOpen((prevOpen) => ({ ...prevOpen, [index]: !prevOpen[index] }));
+    setIsMinimized(false)
   };
   useEffect(() => {
     if (isMinimized) {
