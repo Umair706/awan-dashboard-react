@@ -25,18 +25,18 @@ const CustomListItemButton = styled(ListItemButton)(
 
     return {
       '&:hover': {
-        backgroundColor: currentTheme.palette.primary.main,
+        backgroundColor: currentTheme.palette.secondary.main,
         transition: 'background-color 0.2s',
         '& .MuiListItemIcon-root': {
-          color: currentTheme.palette.primary.contrastText,
+          color: currentTheme.palette.secondary.contrastText,
           fontSize: isMinimized ? '1rem' : '1rem',
         },
         '& .MuiListItemText-root': {
-          color: currentTheme.palette.primary.contrastText,
+          color: currentTheme.palette.secondary.contrastText,
         },
         '& .MuiSvgIcon-root': {
           // Add this block to change the arrow icon color on hover
-          color: currentTheme.palette.primary.contrastText,
+          color: currentTheme.palette.secondary.contrastText,
         },
       },
       '&:active': {
@@ -52,7 +52,13 @@ const CustomListItemButton = styled(ListItemButton)(
       '& .MuiListItemText-root': {
         paddingRight: isMinimized ? 0 : '8px',
       },
-
+      '& .MuiListItemText-root': {
+        color: currentTheme.palette.primary.contrastText,
+      },
+      '& .MuiSvgIcon-root': {
+        // Add this block to change the arrow icon color on hover
+        color: currentTheme.palette.primary.contrastText,
+      },
       borderRadius: 12,
     };
   }
@@ -175,13 +181,13 @@ const Sidebar = () => {
       elevation={1}
       sx={{
         borderRadius: 1,
-        backgroundColor: currentTheme.palette.background.paper,
+        backgroundImage: currentTheme.palette.mode === "light" ? currentTheme.gradients.blue : '',
       }}
     >
       <List
         sx={{
-          width: isMinimized ? '64px' : '100%',
-          maxWidth: isMinimized ? '55px' : '320px',
+          width: isMinimized ? '64px' : '250px',
+          maxWidth: isMinimized ? '55px' : '250px',
           backgroundColor: 'transparent',
           overflow: 'auto',
           maxHeight: '100vh',
@@ -213,14 +219,15 @@ const Sidebar = () => {
           }}
         >
           {!isMinimized && (
-            <Title variant="h6" sx={{ fontWeight: 'bold' }}>
-              Website
+            <Title variant="h6" sx={{ fontWeight: 'bold', color: currentTheme.palette.primary.contrastText }}>
+              Awan Dashboard
             </Title>
           )}
           <IconButton
             onClick={() => setIsMinimized(!isMinimized)}
             sx={{
               zIndex: 2,
+              color: currentTheme.palette.primary.contrastText
             }}
           >
             {isMinimized ? <MenuIcon /> : <MenuIcon />}

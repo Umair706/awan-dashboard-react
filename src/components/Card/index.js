@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useTheme } from '@emotion/react';
-import { Box, styled } from '@mui/system';
+import { styled } from '@mui/system';
 
 const StyledCardHeader = styled(CardHeader)(({ theme, gradient }) => ({
   transition: 'background-color 0.2s ease',
   borderRadius: 14,
   '&:hover': {
     // top: -100,
+    transform: 'scale(1.1)',
   },
   backgroundImage: theme.gradients[gradient] || theme.gradients.red,
   paddingTop: '16px',
@@ -29,6 +27,7 @@ const StyledCardHeader = styled(CardHeader)(({ theme, gradient }) => ({
   textAlign: 'center',
   borderRadius: '0.5rem',
   boxShadow: theme.shadows.primary,
+  color: "#fff"
 }));
 
 const ShiningCard = ({ header, content, gradient, children }) => {
