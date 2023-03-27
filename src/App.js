@@ -7,7 +7,8 @@ import { useEffect } from 'react';
 import { toggleTheme } from './redux/slices/theme';
 import { routes } from './routes/route';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
+import { Fab, IconButton } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
   const queryClient = new QueryClient();
@@ -30,6 +31,24 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={currentTheme}>
         <CssBaseline />
+        {/* Add a floating action button to toggle the theme */}
+        <Fab
+          sx={{
+            position: 'fixed',
+            bottom: '24px',
+            right: '24px',
+          }}
+          color="primary"
+          onClick={handleToggleTheme}
+        >
+          <IconButton
+            sx={{
+              color: 'common.white',
+            }}
+          >
+            {themeMode === 'light' ? <Brightness4 /> : <Brightness7 />}
+          </IconButton>
+        </Fab>
         <Router>
           <Routes>
             {routes.map((route) => (
